@@ -1,0 +1,178 @@
+.resume-Footer {
+	--color_background: var(--color_accent);
+	--color_foreground: var(--color_white);
+
+	--padding: var(--resume_padding);
+	--spacing: var(--resume_spacing);
+	--border-width: var(--resume_border-width);
+
+
+	position: relative;
+
+	display: flex;
+	align-items: center;
+
+	padding:
+		calc(var(--padding) / 2)
+		var(--padding)
+		var(--padding);
+
+	color: var(--color_foreground);
+
+	background-color: var(--color_background);
+
+	@media print, screen and (--desktop) {
+		justify-content: space-between;
+	}
+	@media screen and (--mobile) {
+		flex-direction: column;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+}
+
+.resume-Footer_Profiles {
+	display: inherit;
+
+	min-width: 200px;
+	min-height: 56px;
+
+
+	& summary {
+		padding: var(--spacing) 0;
+
+		color: var(--color_decoration);
+		font-size: var(--font-size_small);
+
+		cursor: pointer;
+
+		@media print, screen and (--desktop) {
+			text-align: right;
+		}
+		@media screen and (--mobile) {
+			text-align: center;
+		}
+	}
+
+
+	& ul {
+		display: flex;
+		justify-content: space-between;
+
+		margin: 0;
+		padding: var(--spacing) 0 0;
+
+		border-top: var(--border-width) solid var(--color_decoration);
+	}
+
+
+	& ul > li {
+		display: inherit;
+
+		font-family: var(--font_sans-serif);
+
+
+		& > .icon {
+			margin-right: var(--spacing);
+
+			fill: var(--color_decoration);
+		}
+	}
+}
+
+#download-resume {
+	position: absolute;
+
+	@media print {
+		display: none;
+	}
+	@media screen and (--desktop) {
+		right: 50%;
+		bottom: 50%;
+
+		transform: translate(50%, 50%);
+	}
+	@media screen and (--mobile) {
+		bottom: var(--resume_padding);
+		left: var(--resume_padding);
+	}
+
+	&::after {
+		position: absolute;
+
+		white-space: pre;
+
+		visibility: hidden;
+
+		content: "Download resume as PDF";
+		pointer-events: none;
+
+		@media screen and (--desktop) {
+			top: calc(-2.5 * var(--font-size_default));
+			right: 50%;
+
+			padding: 0.1em 0.5em;
+
+			background-color: var(--color_decoration);
+			border-radius: 1.15em;
+			transform: translateX(50%);
+			opacity: 0;
+
+			transition:
+				all
+				var(--transition-timing-function)
+				var(--transition-duration);
+		}
+		@media screen and (--mobile) {
+			right: -100%;
+		}
+	}
+
+	&:hover,
+	&:focus {
+		&::after{
+			@media screen and (--desktop) {
+				visibility: visible;
+				opacity: 1;
+			}
+		}
+
+
+		& .icon {
+			box-shadow:
+				0
+				0
+				calc(var(--spacing) / 2)
+				calc(var(--spacing) / 2)
+				var(--color_foreground);
+		}
+	}
+
+
+	& .icon {
+		--size: var(--font-size_extra-large);
+
+
+		padding: 0.5em;
+
+		background-color: var(--color_decoration);
+		border-radius: 50%;
+		box-shadow:
+			0
+			0
+			calc(var(--spacing) / 2)
+			calc(var(--spacing) / 2)
+			transparent;
+
+		transition:
+			all
+			var(--transition-timing-function)
+			var(--transition-duration);
+
+		fill: var(--color_foreground);
+
+		@media screen and (prefers-reduced-motion) {
+			transition: none;
+		}
+	}
+}

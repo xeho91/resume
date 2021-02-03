@@ -1,0 +1,32 @@
+@font-face {
+	font-weight: 1 999;
+	font-family: "Fraunces";
+	src: url("../fonts/serif/Fraunces.subset.woff2") format("woff2");
+	unicode-range: U+9,U+A,U+20,U+26-29,U+2B-3A,U+40-58,U+5A,U+5B,U+5D,U+61-7A,U+A0,U+E1,U+ED,U+F3,U+2011,U+2013,U+2019;
+}
+@font-face {
+	font-weight: 1 999;
+	font-family: "Fraunces";
+	font-style: italic;
+	src: url("../fonts/serif/Fraunces-italic.subset.woff2") format("woff2");
+	unicode-range: U+9,U+A,U+20,U+26-29,U+2B-3A,U+40-58,U+5A,U+5B,U+5D,U+61-7A,U+A0,U+E1,U+ED,U+F3,U+2011,U+2013,U+2019;
+}
+
+@font-face {
+	font-weight: 1 999;
+	font-family: "Work Sans";
+	src: url("../fonts/sans-serif/WorkSans.subset.woff2") format("woff2");
+	unicode-range: U+9,U+A,U+20,U+26-29,U+2B-3A,U+40-58,U+5A,U+5B,U+5D,U+61-7A,U+A0,U+E1,U+ED,U+F3,U+2011,U+2013,U+2019;
+}
+@font-face {
+	font-weight: 1 999;
+	font-family: "Work Sans";
+	font-style: italic;
+	src: url("../fonts/sans-serif/WorkSans-italic.subset.woff2") format("woff2");
+	unicode-range: U+9,U+A,U+20,U+26-29,U+2B-3A,U+40-58,U+5A,U+5B,U+5D,U+61-7A,U+A0,U+E1,U+ED,U+F3,U+2011,U+2013,U+2019;
+}
+
+:root {
+	--font_serif: "Fraunces", serif;
+	--font_sans-serif: "Work Sans", sans-serif;
+}

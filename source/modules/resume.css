@@ -1,0 +1,62 @@
+@import "./resume/resume-Header.css";
+@import "./resume/resume-Content.css";
+@import "./resume/resume-Footer.css";
+
+
+.resume {
+	--resume_spacing: 0.5em;
+	--resume_border-width: 0.1em;
+
+
+	position: relative;
+
+	display: grid;
+	grid-template:
+		"header"
+		"content"
+		"footer";
+	grid-template-rows: auto 1fr auto;
+	grid-template-columns: 1fr;
+
+	width: var(--resume_width);
+
+	background-color: var(--color_background);
+
+	@media screen and (--desktop) {
+		--resume_width: 210mm;
+		--resume_height: 297mm;
+		--resume_margin: 5mm;
+		--resume_padding: 10mm;
+
+
+		height: var(--resume_height);
+		margin: calc(var(--resume_margin) / 2) var(--resume_margin);
+
+		box-shadow: 0 0 0.5em 0.25em hsla(
+			var(--white_hue),
+			var(--white_saturation),
+			var(--white_lightness),
+			25%
+		);
+	}
+	@media screen and (--mobile) {
+		--resume_width: 100vw;
+		--resume_height: 100vh;
+		--resume_padding: 0.75em;
+
+
+		min-height: var(--resume_height);
+		margin: 0;
+	}
+	@media print {
+		--resume_width: 210mm;
+		/* The real height value should be 297mm, but Firefox...?
+		I couldn't explain why. */
+		--resume_height: 296.65mm;
+		--resume_padding: 10mm;
+
+
+		height: var(--resume_height);
+		margin: 0;
+	}
+}

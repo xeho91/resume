@@ -1,0 +1,67 @@
+@custom-media --desktop (width >= 225mm);
+@custom-media --mobile (width < 225mm);
+
+@page {
+	margin-top: 0;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: 0;
+}
+
+
+:root {
+	--color_background: var(--color_white);
+	--color_foreground: var(--color_black);
+	--color_accent: var(--color-primary_purple);
+	--color_complementary: var(--color-primary_orange);
+	--color_heading: var(--color_accent);
+	--color_decoration: var(--color_complementary);
+
+	--transition-duration: 0.25s;
+	--transition-timing-function: ease-in-out;
+}
+
+* {
+	box-sizing: content-box;
+
+	@media print {
+		color-adjust: exact;
+	}
+}
+
+html {
+	overflow-y: scroll;
+
+	color: var(--color_foreground);
+	line-height: 1.15; /* Normalize */
+	text-size-adjust: 100%; /* Normalize */
+
+	scroll-behavior: smooth;
+	scroll-snap-type: x mandatory;
+}
+
+body {
+	position: relative;
+
+	display: flex;
+	place-content: center;
+
+	margin: 0; /* Normalize */
+
+	background-color: var(--color_gray);
+}
+
+.icon {
+	--size: calc(var(--font-size_default) + 0.15em);
+
+
+	width: var(--size);
+	height: var(--size);
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}

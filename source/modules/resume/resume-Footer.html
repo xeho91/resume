@@ -1,0 +1,52 @@
+<footer class="resume-Footer">
+	<span>
+		References available upon
+		<a href="mailto:{{ email }}?subject=Request for the references&body=I represent a company...">
+			request</a>.
+	</span>
+
+	<a id="download-resume"
+		href="{{ resumeDownloadURL }}"
+		aria-label="Download resume as PDF"
+		download
+	>
+		<svg class="icon"
+			role="img"
+			focusable="false"
+			aria-labelledby="title-icon_download"
+		>
+			<title id="title-icon_download">Download icon</title>
+			<use href="./assets/images/icons.svg#icon_download" />
+		</svg>
+	</a>
+
+	<details class="resume-Footer_Profiles" open>
+		<summary>Profiles</summary>
+
+		<ul>
+			<li>
+				<svg class="icon"
+					role="img"
+					focusable="false"
+					aria-labelledby="title-icon_twitter"
+				>
+					<title id="title-icon_twitter">Twitter's icon</title>
+					<use href="./assets/images/icons.svg#icon_twitter" />
+				</svg>
+				<a href="https://twitter.com/{{ twitterProfileName }}">@{{ twitterProfileName }}</a>
+			</li>
+
+			<li>
+				<svg class="icon"
+					role="img"
+					focusable="false"
+					aria-labelledby="title-icon_github"
+				>
+					<title id="title-icon_github">Github's icon</title>
+					<use href="./assets/images/icons.svg#icon_github" />
+				</svg>
+				<a href="https://github.com/{{ githubProfileName }}">/{{ githubProfileName }}</a>
+			</li>
+		</ul>
+	</details>
+</footer>

@@ -1,0 +1,8 @@
+{
+  "verbose": true,
+  "watch": [
+    "./config/Gulpfile.js",
+    "./config/.env"
+  ],
+  "exec": "gulp --gulpfile \"./config/Gulpfile.js\" --environment \"development\""
+}

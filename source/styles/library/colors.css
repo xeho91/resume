@@ -1,0 +1,72 @@
+:root {
+/* White */
+	--white_hue: 0deg;
+	--white_saturation: 100%;
+	--white_lightness: 100%;
+	--white_alpha: 100%;
+
+	--white_hsla: hsla(
+		var(--white_hue),
+		var(--white_saturation),
+		var(--white_lightness),
+		var(--white_alpha)
+	);
+
+/* Black */
+	--black_hue: 0deg;
+	--black_saturation: 0%;
+	--black_lightness: 0%;
+	--black_alpha: 100%;
+
+	--black_hsla: hsla(
+		var(--black_hue),
+		var(--black_saturation),
+		var(--black_lightness),
+		var(--black_alpha)
+	);
+
+/* Gray */
+	--gray_hue: 240deg;
+	--gray_saturation: 2%;
+	--gray_lightness: 20%;
+	--gray_alpha: 100%;
+
+	--gray_hsla: hsla(
+		var(--gray_hue),
+		var(--gray_saturation),
+		var(--gray_lightness),
+		var(--gray_alpha)
+	);
+
+/* Purple */
+	--primary_purple_hue: 297deg;
+	--primary_purple_saturation: 91%;
+	--primary_purple_lightness: 18%;
+	--primary_purple_alpha: 100%;
+
+	--primary_purple_hsla: hsla(
+		var(--primary_purple_hue),
+		var(--primary_purple_saturation),
+		var(--primary_purple_lightness),
+		var(--primary_purple_alpha)
+	);
+
+/* Orange */
+	--primary_orange_hue: 27deg;
+	--primary_orange_saturation: 71%;
+	--primary_orange_lightness: 58%;
+	--primary_orange_alpha: 100%;
+
+	--primary_orange_hsla: hsla(
+		var(--primary_orange_hue),
+		var(--primary_orange_saturation),
+		var(--primary_orange_lightness),
+		var(--primary_orange_alpha)
+	);
+
+	--color-primary_purple: var(--primary_purple_hsla);
+	--color-primary_orange: var(--primary_orange_hsla);
+	--color_white: var(--white_hsla);
+	--color_black: var(--black_hsla);
+	--color_gray: var(--gray_hsla);
+}

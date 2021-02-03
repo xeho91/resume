@@ -1,0 +1,111 @@
+:root {
+	--core-font-unit: 16px;
+
+	--font-size_small: calc((12/16) * var(--core-font-unit));
+	--font-size_default: calc((16/16) * var(--core-font-unit));
+	--font-size_large: calc((20/16) * var(--core-font-unit));
+	--font-size_extra-large: calc((24/16) * var(--core-font-unit));
+}
+
+body {
+	font-weight: 300;
+	font-size: var(--font-size_default);
+	font-family: var(--font_sans-serif);
+	font-synthesis: none;
+}
+
+h1, h2, h3 {
+	font-weight: 600;
+}
+
+h1 {
+	font-size: var(--font-size_extra-large);
+}
+
+h2 {
+	font-size: var(--font-size_large);
+}
+
+h3 {
+	font-size: var(--font-size_default);
+}
+
+p {
+	font-weight: 350;
+	font-size: var(--font-size_default);
+	font-family: var(--font_serif);
+}
+
+dt {
+	font-weight: 550;
+	font-family: var(--font_sans-serif);
+}
+
+dd, li {
+	font-weight: 350;
+	font-family: var(--font_serif);
+}
+
+small {
+	font-size: var(--font-size_small);
+}
+
+em {
+	font-style: italic;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+abbr {
+	cursor: help;
+
+	@media print {
+		text-decoration: none;
+	}
+	@media screen and (--mobile) {
+		font-weight: 600;
+		text-decoration: none;
+
+
+		&:not(#PGP-public-key)::after {
+			font-weight: 300;
+			font-style: italic;
+
+			content: " [" attr(title) "]";
+		}
+	}
+}
+
+/* stylelint-disable a11y/media-prefers-reduced-motion */
+summary,
+a {
+	transition:
+		font-weight
+		var(--transition-duration)
+		var(--transition-timing-function);
+
+	&:hover,
+	&:focus {
+		font-weight: 700;
+
+		@media screen and (prefers-reduced-motion) {
+			transition: none;
+		}
+	}
+}
+/* stylelint-enable a11y/media-prefers-reduced-motion */
+
+.parenthesized {
+	font-weight: 250;
+	font-style: italic;
+
+	&::before {
+		content: "(";
+	}
+	&::after {
+		content: ")";
+	}
+}

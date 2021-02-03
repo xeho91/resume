@@ -1,0 +1,57 @@
+<header class="resume-Header">
+	<h1 class="resume-Header_Title">
+		<div>
+			<span id="name">{{ name }}</span>
+			<em id="preferred-name" class="parenthesized">{{ preferredName }}</em>
+		</div>
+		<span id="surname">{{ surname }}</span>
+		<small id="document-name"><a href="#">{{ documentName }}</a></small>
+	</h1>
+
+	<details class="resume-Header_Contacts" open>
+		<summary>Contacts</summary>
+
+		<ul>
+			<li>
+				<a id="email" href="mailto:{{ email }}">{{ email }}</a>
+				<svg class="icon"
+					role="img"
+					focusable="false"
+					aria-labelledby="title-icon_envelope">
+					<title id="title-icon_envelope">Envelope icon</title>
+					<use href="./assets/images/icons.svg#icon_envelope">
+				</svg>
+			</li>
+
+			<li>
+				<a id="phone-number"
+					href="tel:{{ phoneNumber }}"
+				>{{ phoneNumber }}</a>
+				<svg class="icon"
+					role="img"
+					focusable="false"
+					aria-labelledby="title-icon_signal"
+				>
+					<title id="title-icon_signal">Signal's icon</title>
+					<use href="./assets/images/icons.svg#icon_signal" />
+				</svg>
+			</li>
+
+			<li>
+				<a href="{{ PGPfingerprintURL }}">
+					<abbr id="PGP-public-key"
+						title="{{ PGPfingerprintLong }}"
+					>...{{ PGPfingerprintShort }}</abbr>
+				</a>
+				<svg class="icon"
+					role="img"
+					focusable="false"
+					aria-labelledby="title-icon_key"
+				>
+					<title id="title-icon_key">Key icon</title>
+					<use href="./assets/images/icons.svg#icon_key" />
+				</svg>
+			</li>
+		</ul>
+	</details>
+</header>
