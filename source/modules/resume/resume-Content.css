@@ -234,7 +234,7 @@
 		& > li {
 			margin: 0;
 
-			color: var(--color_decoration);
+			color: var(--color_background);
 			font-family: var(--font_sans-serif);
 			line-height: 1;
 

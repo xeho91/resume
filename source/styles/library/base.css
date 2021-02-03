@@ -57,6 +57,8 @@ body {
 
 	width: var(--size);
 	height: var(--size);
+
+	font-weight: none;
 }
 
 .row {
