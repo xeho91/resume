@@ -1,0 +1,9 @@
+{
+  "prettier.configPath": "./config/.prettierrc.js",
+  "eslint.options": {
+    "configFile": "./config/.eslintrc.js",
+  },
+  "stylelint.config": {
+    "extends": "C:\\Users\\matka\\.dotfiles\\Linters\\.stylelintrc.js",
+  },
+}
