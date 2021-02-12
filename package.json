@@ -5,7 +5,8 @@
   "version": "0.1.0",
   "scripts": {
     "start": "nodemon --config \"./config/nodemon.json\"",
-    "build": "gulp --gulpfile \"./config/Gulpfile.js\""
+    "build": "gulp --gulpfile \"./config/Gulpfile.js\" build",
+    "deploy": "git subtree push --prefix build/production"
   },
   "repository": {
     "type": "git",
@@ -61,8 +62,5 @@
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-declaration-use-variable": "^1.7.2"
-  },
-  "dependencies": {
-    "express": "^4.17.1"
   }
 }

@@ -47,38 +47,45 @@ function build_markupFiles() {
 
 	return gulp
 		.src(`${directoriesPaths.source}/index.html`)
-		.pipe(gulpPostHTML([
-			require("posthtml-modules")({
-				root: directoriesPaths.source,
-				from: directoriesPaths.source,
-				locals: data,
-			}),
-			require("posthtml-expressions")({
-				locals: data,
-			}),
-		]))
-		.pipe(gulpIf(IS_PRODUCTION, gulpHTMLnano({
-			// collapseAttributeWhitespace: true,
-			collapseWhitespace: "conservative",
-			deduplicateAttributeValues: false,
-			removeEmptyAttributes: false,
-			removeComments: "all",
-			removeAttributeQuotes: false,
-			removeUnusedCss: false,
-			minifyCss: false,
-			minifyJs: false,
-			minifyJson: false,
-			minifySvg: false,
-			minifyUrls: false,
-			// minifyConditionalComments: true,
-			removeRedundantAttributes: false,
-			collapseBooleanAttributes: false,
-			mergeStyles: false,
-			mergeScripts: false,
-			sortAttributesWithLists: false,
-			sortAttributes: false,
-			removeOptionalTags: false,
-		})))
+		.pipe(
+			gulpPostHTML([
+				require("posthtml-modules")({
+					root: directoriesPaths.source,
+					from: directoriesPaths.source,
+					locals: data,
+				}),
+				require("posthtml-expressions")({
+					locals: data,
+				}),
+			])
+		)
+		.pipe(
+			gulpIf(
+				IS_PRODUCTION,
+				gulpHTMLnano({
+					// collapseAttributeWhitespace: true,
+					collapseWhitespace: "conservative",
+					deduplicateAttributeValues: false,
+					removeEmptyAttributes: false,
+					removeComments: "all",
+					removeAttributeQuotes: false,
+					removeUnusedCss: false,
+					minifyCss: false,
+					minifyJs: false,
+					minifyJson: false,
+					minifySvg: false,
+					minifyUrls: false,
+					// minifyConditionalComments: true,
+					removeRedundantAttributes: false,
+					collapseBooleanAttributes: false,
+					mergeStyles: false,
+					mergeScripts: false,
+					sortAttributesWithLists: false,
+					sortAttributes: false,
+					removeOptionalTags: false,
+				})
+			)
+		)
 		.pipe(gulp.dest(directoriesPaths.build));
 }
 exports.build_html = build_markupFiles;
@@ -135,12 +142,17 @@ exports.clone_fonts = clone_fonts;
 function build_favicon() {
 	return gulp
 		.src(`${directoriesPaths.source}/images/favicon.svg`)
-		.pipe(gulpIf(IS_PRODUCTION, gulpSVGmin({
-			plugins: [
-				{ cleanupIDs: false },
-				{ removeUnknownsAndDefaults: false },
-			],
-		})))
+		.pipe(
+			gulpIf(
+				IS_PRODUCTION,
+				gulpSVGmin({
+					plugins: [
+						{ cleanupIDs: false },
+						{ removeUnknownsAndDefaults: false },
+					],
+				})
+			)
+		)
 		.pipe(gulpClone())
 		.pipe(gulp.dest(`${directoriesPaths.build}/assets/images`));
 }
@@ -157,7 +169,8 @@ var build_output = gulp.series(
 		build_stylesheetFiles,
 		build_iconSprites,
 		build_favicon
-	)
+	),
+	gulpIf(IS_PRODUCTION, compress_build)
 );
 exports.build = build_output;
 
@@ -190,7 +203,7 @@ function watch_files() {
 		// reloadDelay: 200,
 	});
 
-	gulp.watch(`${directoriesPaths.source}/**/*.html`).on(
+	gulp.watch(`${directoriesPaths.source}/data.json`).on(
 		"change",
 		gulp.series(build_markupFiles)
 	);
@@ -210,4 +223,4 @@ exports.watch = watch_files;
 // -------------------------------------------------------------------------- //
 // Default
 // -------------------------------------------------------------------------- //
-exports.default = gulp.series(build_output, compress_build, watch_files);
+exports.default = gulp.series(build_output, watch_files);
