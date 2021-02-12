@@ -207,6 +207,14 @@
 		}
 
 
+		&#technology-stack > .row dl {
+			@media screen and (--mobile) {
+				width: 100%;
+			}
+
+		}
+
+
 		&#languages > .row li {
 			@media print, screen and (--desktop) {
 				width: 50%;
