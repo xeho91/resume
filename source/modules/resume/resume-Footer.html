@@ -1,7 +1,7 @@
 <footer class="resume-Footer">
 	<span>
 		References available upon
-		<a href="mailto:{{ email }}?subject=Request for the references&body=I represent a company...">
+		<a href="mailto:{{ contacts.email }}?subject=Request for the references&body=I represent a company...">
 			request</a>.
 	</span>
 
@@ -33,7 +33,7 @@
 					<title id="title-icon_twitter">Twitter's icon</title>
 					<use href="./assets/images/icons.svg#icon_twitter" />
 				</svg>
-				<a href="https://twitter.com/{{ twitterProfileName }}">@{{ twitterProfileName }}</a>
+				<a href="https://twitter.com/{{ socialProfiles.twitter }}">@{{ socialProfiles.twitter }}</a>
 			</li>
 
 			<li>
@@ -45,7 +45,7 @@
 					<title id="title-icon_github">Github's icon</title>
 					<use href="./assets/images/icons.svg#icon_github" />
 				</svg>
-				<a href="https://github.com/{{ githubProfileName }}">/{{ githubProfileName }}</a>
+				<a href="https://github.com/{{ socialProfiles.github }}">/{{ socialProfiles.github }}</a>
 			</li>
 		</ul>
 	</details>

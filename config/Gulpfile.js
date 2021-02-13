@@ -1,6 +1,3 @@
-// cSpell:words gulpHTMLnano gulpSVGstore, gulpSVGmin, postHTMLplugins
-// cSpell:words postCSSplugins
-
 require("dotenv").config();
 
 var gulp = require("gulp");
@@ -16,7 +13,6 @@ var gulpCSSO = require("gulp-csso");
 var gulpSVGstore = require("gulp-svgstore");
 var gulpSVGmin = require("gulp-svgmin");
 var gulpBrotli = require("gulp-brotli");
-
 var browserSync = require("browser-sync").create();
 
 const IS_PRODUCTION = process.env.NODE_ENV === "production";
@@ -43,7 +39,10 @@ exports.clean = clean_previousBuild;
 // Markups
 // -------------------------------------------------------------------------- //
 function build_markupFiles() {
-	let data = require(`${directoriesPaths.source}/data.json`);
+	let data = {
+		IS_PRODUCTION: IS_PRODUCTION,
+		...require(`${directoriesPaths.source}/data.json`),
+	};
 
 	return gulp
 		.src(`${directoriesPaths.source}/index.html`)
@@ -64,7 +63,7 @@ function build_markupFiles() {
 				IS_PRODUCTION,
 				gulpHTMLnano({
 					// collapseAttributeWhitespace: true,
-					collapseWhitespace: "conservative",
+					collapseWhitespace: "aggressive",
 					deduplicateAttributeValues: false,
 					removeEmptyAttributes: false,
 					removeComments: "all",
@@ -159,7 +158,18 @@ function build_favicon() {
 exports.build_favicon = build_favicon;
 
 // -------------------------------------------------------------------------- //
-// Build all
+// Compress
+// -------------------------------------------------------------------------- //
+function compress_build() {
+	return gulp
+		.src(`${directoriesPaths.build}/**/*`, { nodir: true })
+		.pipe(gulpIf(IS_PRODUCTION, gulpBrotli()))
+		.pipe(gulp.dest(directoriesPaths.build));
+}
+exports.compress = compress_build;
+
+// -------------------------------------------------------------------------- //
+// Build output
 // -------------------------------------------------------------------------- //
 var build_output = gulp.series(
 	clean_previousBuild,
@@ -173,17 +183,6 @@ var build_output = gulp.series(
 	gulpIf(IS_PRODUCTION, compress_build)
 );
 exports.build = build_output;
-
-// -------------------------------------------------------------------------- //
-// Compress
-// -------------------------------------------------------------------------- //
-function compress_build() {
-	return gulp
-		.src(`${directoriesPaths.build}/**/*`, { nodir: true })
-		.pipe(gulpIf(IS_PRODUCTION, gulpBrotli()))
-		.pipe(gulp.dest(directoriesPaths.build));
-}
-exports.compress = compress_build;
 
 // -------------------------------------------------------------------------- //
 // Watch files
@@ -203,7 +202,10 @@ function watch_files() {
 		// reloadDelay: 200,
 	});
 
-	gulp.watch(`${directoriesPaths.source}/data.json`).on(
+	gulp.watch([
+		`${directoriesPaths.source}/data.json`,
+		`${directoriesPaths.source}/**/*.html`,
+	]).on(
 		"change",
 		gulp.series(build_markupFiles)
 	);
@@ -224,3 +226,7 @@ exports.watch = watch_files;
 // Default
 // -------------------------------------------------------------------------- //
 exports.default = gulp.series(build_output, watch_files);
+
+
+// cSpell:words gulpHTMLnano gulpSVGstore, gulpSVGmin, postHTMLplugins
+// cSpell:words postCSSplugins

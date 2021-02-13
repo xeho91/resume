@@ -1,10 +1,10 @@
 <header class="resume-Header">
 	<h1 class="resume-Header_Title">
 		<div>
-			<span id="name">{{ name }}</span>
-			<em id="preferred-name" class="parenthesized">{{ preferredName }}</em>
+			<span id="name">{{ person.name }}</span>
+			<em id="preferred-name" class="parenthesized">{{ person.preferredName }}</em>
 		</div>
-		<span id="surname">{{ surname }}</span>
+		<span id="surname">{{ person.surname }}</span>
 		<small id="document-name"><a href="#">{{ documentName }}</a></small>
 	</h1>
 
@@ -13,7 +13,7 @@
 
 		<ul>
 			<li>
-				<a id="email" href="mailto:{{ email }}">{{ email }}</a>
+				<a id="email" href="mailto:{{ contacts.email }}">{{ contacts.email }}</a>
 				<svg class="icon"
 					role="img"
 					focusable="false"
@@ -25,8 +25,8 @@
 
 			<li>
 				<a id="phone-number"
-					href="tel:{{ phoneNumber }}"
-				>{{ phoneNumber }}</a>
+					href="tel:{{ contacts.phoneNumber }}"
+				>{{ contacts.phoneNumber }}</a>
 				<svg class="icon"
 					role="img"
 					focusable="false"
@@ -40,8 +40,8 @@
 			<li>
 				<a href="{{ PGPfingerprintURL }}">
 					<abbr id="PGP-public-key"
-						title="{{ PGPfingerprintLong }}"
-					>...{{ PGPfingerprintShort }}</abbr>
+						title="{{ PGP.fingerprint.long }}"
+					>...{{ PGP.fingerprint.short }}</abbr>
 				</a>
 				<svg class="icon"
 					role="img"
