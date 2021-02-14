@@ -4,6 +4,6 @@
     "configFile": "./config/.eslintrc.js",
   },
   "stylelint.config": {
-    "extends": "C:\\Users\\matka\\.dotfiles\\Linters\\.stylelintrc.js",
+    "extends": "./config/.stylelintrc.js",
   },
 }
