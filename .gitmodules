@@ -1,0 +1,3 @@
+[submodule "favicon"]
+	path = source/images/favicon
+	url = https://github.com/xeho91/avatar.git

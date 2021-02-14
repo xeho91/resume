@@ -138,24 +138,13 @@ exports.clone_fonts = clone_fonts;
 // -------------------------------------------------------------------------- //
 // Favicon
 // -------------------------------------------------------------------------- //
-function build_favicon() {
+function clone_favicon() {
 	return gulp
-		.src(`${directoriesPaths.source}/images/favicon.svg`)
-		.pipe(
-			gulpIf(
-				IS_PRODUCTION,
-				gulpSVGmin({
-					plugins: [
-						{ cleanupIDs: false },
-						{ removeUnknownsAndDefaults: false },
-					],
-				})
-			)
-		)
+		.src(`${directoriesPaths.source}/images/favicon/xeho91-avatar.min.svg`)
 		.pipe(gulpClone())
 		.pipe(gulp.dest(`${directoriesPaths.build}/assets/images`));
 }
-exports.build_favicon = build_favicon;
+exports.clone_favicon = clone_favicon;
 
 // -------------------------------------------------------------------------- //
 // Compress
@@ -175,10 +164,10 @@ var gulpTasks = [
 	clean_previousBuild,
 	gulp.parallel(
 		clone_fonts,
+		clone_favicon,
 		build_markupFiles,
 		build_stylesheetFiles,
 		build_iconSprites,
-		build_favicon
 	),
 	IS_PRODUCTION ? compress_build : false,
 ].filter(Boolean);
