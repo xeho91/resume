@@ -5,8 +5,7 @@
   "version": "0.1.0",
   "scripts": {
     "start": "nodemon --config \"./config/nodemon.json\"",
-    "build": "gulp --gulpfile \"./config/Gulpfile.js\" build",
-    "deploy": "git subtree push --prefix build/production"
+    "build": "gulp --gulpfile \"./config/Gulpfile.js\" build"
   },
   "repository": {
     "type": "git",

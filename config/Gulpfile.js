@@ -171,7 +171,7 @@ exports.compress = compress_build;
 // -------------------------------------------------------------------------- //
 // Build output
 // -------------------------------------------------------------------------- //
-var build_output = gulp.series(
+var gulpTasks = [
 	clean_previousBuild,
 	gulp.parallel(
 		clone_fonts,
@@ -180,8 +180,9 @@ var build_output = gulp.series(
 		build_iconSprites,
 		build_favicon
 	),
-	gulpIf(IS_PRODUCTION, compress_build)
-);
+	IS_PRODUCTION ? compress_build : false,
+].filter(Boolean);
+var build_output = gulp.series(...gulpTasks);
 exports.build = build_output;
 
 // -------------------------------------------------------------------------- //
@@ -205,10 +206,7 @@ function watch_files() {
 	gulp.watch([
 		`${directoriesPaths.source}/data.json`,
 		`${directoriesPaths.source}/**/*.html`,
-	]).on(
-		"change",
-		gulp.series(build_markupFiles)
-	);
+	]).on("change", gulp.series(build_markupFiles));
 
 	gulp.watch(`${directoriesPaths.source}/**/*.css`).on(
 		"change",
@@ -226,7 +224,6 @@ exports.watch = watch_files;
 // Default
 // -------------------------------------------------------------------------- //
 exports.default = gulp.series(build_output, watch_files);
-
 
 // cSpell:words gulpHTMLnano gulpSVGstore, gulpSVGmin, postHTMLplugins
 // cSpell:words postCSSplugins

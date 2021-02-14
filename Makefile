@@ -1,45 +1,32 @@
 # Import variables from .env file
 include ./config/.env
 
-BUILD_BASE_DIR  := ./build
-BUILD_DIR       := ./${BUILD_BASE_DIR}/${NODE_ENV}
-
-PRODUCTION_REPO := ssh://${SSH_USERNAME}@${SSH_HOSTNAME}/${PRODUCTION_GIT_PATH}
+BUILD_BASE_DIR := build
+BUILD_DIR      := ${BUILD_BASE_DIR}/${NODE_ENV}
 
 # ============================================================================ #
-# Install tasks
+# Tasks
 # ============================================================================ #
 install:
 	pnpm install
 
-# ============================================================================ #
-# Build tasks
-# ============================================================================ #
 build:
 	pnpm build
 
-# ============================================================================ #
-# Creating Git repositories
-# ============================================================================ #
-create-production-repo:
-	@ cd $(BUILD_DIR) && \
-		git init && \
-		git remote add origin $(PRODUCTION_REPO)
-
-# ============================================================================ #
-# Sub-tasks
-# ============================================================================ #
-
 clean:
 	@ rm --recursive --force $(BUILD_BASE_DIR)
+	@ echo "Removed build directory."
 
-deploy: build create-production-repo
-	@ cd $(BUILD_DIR) && \
-		git add --all && \
-		git commit --message 'Deploying the latest "$(NODE_ENV)" build' && \
-		git push --force origin +main:refs/heads/main
-	@ git tag --force $(NODE_ENV)
-	@ echo "Deploying the \"$(NODE_ENV)\" build completed!"
+fonts:
+	@ ./generate_font_subsets.sh
+	@ echo "Font subsets generated."
+
+deploy:
+	@ git add --force $(BUILD_DIR)
+	@ git commit --message "Deploy the production build"
+	@ git tag deploy --force
+	@ git subtree push --prefix $(BUILD_DIR) $(PRODUCTION_REPO) $(PRODUCTION_BRANCH)
+	@ echo "Deploying the production build finished."
 
 # ============================================================================ #
 
