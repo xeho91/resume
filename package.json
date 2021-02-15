@@ -26,14 +26,15 @@
   "devDependencies": {
     "autoprefixer": "^10.2.4",
     "browser-sync": "^2.26.14",
+    "del": "^6.0.0",
     "dotenv": "^8.2.0",
-    "eslint": "^7.19.0",
+    "eslint": "^7.20.0",
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
+    "glyphhanger": "^3.2.0",
     "gulp": "^4.0.2",
     "gulp-brotli": "^3.0.0",
-    "gulp-clean": "^0.4.0",
     "gulp-clone": "^2.0.1",
     "gulp-csso": "^4.0.1",
     "gulp-htmlnano": "^0.1.0",
@@ -46,7 +47,7 @@
     "gulp-svgstore": "^7.0.1",
     "gulp-web-compress": "^0.4.1",
     "nodemon": "^2.0.7",
-    "postcss": "^8.2.5",
+    "postcss": "^8.2.6",
     "postcss-custom-media": "^8.0.0",
     "postcss-import": "^14.0.0",
     "postcss-media-minmax": "^5.0.0",
@@ -55,11 +56,12 @@
     "posthtml-expressions": "^1.7.1",
     "posthtml-modules": "^0.7.3",
     "prettier": "^2.2.1",
-    "stylelint": "^13.9.0",
+    "stylelint": "^13.10.0",
     "stylelint-8-point-grid": "^1.0.0",
     "stylelint-a11y": "^1.2.3",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-rational-order": "^0.1.2",
-    "stylelint-declaration-use-variable": "^1.7.2"
+    "stylelint-declaration-use-variable": "^1.7.2",
+    "stylelint-order": "^4.1.0"
   }
 }

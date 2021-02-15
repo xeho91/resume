@@ -8,7 +8,8 @@ BUILD_DIR      := ${BUILD_BASE_DIR}/${NODE_ENV}
 # Tasks
 # ============================================================================ #
 install:
-	pnpm install
+	@ pnpm install
+	@ pipenv install
 
 build:
 	pnpm build
@@ -18,7 +19,7 @@ clean:
 	@ echo "Removed build directory."
 
 fonts:
-	@ ./generate_font_subsets.sh
+	@ ./scripts/generate-font-subsets.sh
 	@ echo "Font subsets generated."
 
 deploy:

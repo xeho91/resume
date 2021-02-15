@@ -23,7 +23,7 @@ var rulesFromESLint = {
 
 	"quotes": ["warn", "double", { avoidEscape: true }],
 
-	"no-console": ["warn"],
+	"no-console": ["off"],
 
 	"no-alert": ["error"],
 

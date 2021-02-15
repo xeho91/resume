@@ -1,7 +1,6 @@
 require("dotenv").config();
 
 var gulp = require("gulp");
-var gulpClean = require("gulp-clean");
 var gulpClone = require("gulp-clone");
 var gulpRename = require("gulp-rename");
 var gulpIf = require("gulp-if");
@@ -13,6 +12,8 @@ var gulpCSSO = require("gulp-csso");
 var gulpSVGstore = require("gulp-svgstore");
 var gulpSVGmin = require("gulp-svgmin");
 var gulpBrotli = require("gulp-brotli");
+
+var del = require("del");
 var browserSync = require("browser-sync").create();
 
 const IS_PRODUCTION = process.env.NODE_ENV === "production";
@@ -22,16 +23,14 @@ var directoriesPaths = {
 	// input directory
 	source: "../source",
 	// output directory
-	build: `../build/${ IS_PRODUCTION ? "production" : "development" }`,
+	build: `../build/${IS_PRODUCTION ? "production" : "development"}`,
 };
 
 // -------------------------------------------------------------------------- //
 // Cleaning
 // -------------------------------------------------------------------------- //
 function clean_previousBuild() {
-	return gulp
-		.src(directoriesPaths.build, { read: false, allowEmpty: true })
-		.pipe(gulpClean({ force: true }));
+	return del([directoriesPaths.build], { force: true });
 }
 exports.clean = clean_previousBuild;
 
@@ -129,7 +128,7 @@ exports.build_icons = build_iconSprites;
 // -------------------------------------------------------------------------- //
 function clone_fonts() {
 	return gulp
-		.src(`${directoriesPaths.source}/fonts/**/*.woff2`)
+		.src(`${directoriesPaths.source}/fonts/**/*.subset.woff2`)
 		.pipe(gulpClone())
 		.pipe(gulp.dest(`${directoriesPaths.build}/assets/fonts`));
 }
@@ -152,7 +151,7 @@ exports.clone_favicon = clone_favicon;
 function compress_build() {
 	return gulp
 		.src(`${directoriesPaths.build}/**/*`, { nodir: true })
-		.pipe(gulpIf(IS_PRODUCTION, gulpBrotli()))
+		.pipe(gulpBrotli())
 		.pipe(gulp.dest(directoriesPaths.build));
 }
 exports.compress = compress_build;
@@ -163,15 +162,15 @@ exports.compress = compress_build;
 var gulpTasks = [
 	clean_previousBuild,
 	gulp.parallel(
-		clone_fonts,
 		clone_favicon,
+		clone_fonts,
 		build_markupFiles,
 		build_stylesheetFiles,
-		build_iconSprites,
+		build_iconSprites
 	),
 	IS_PRODUCTION ? compress_build : false,
 ].filter(Boolean);
-var build_output = gulp.series(...gulpTasks);
+const build_output = gulp.series(...gulpTasks);
 exports.build = build_output;
 
 // -------------------------------------------------------------------------- //
@@ -215,4 +214,4 @@ exports.watch = watch_files;
 exports.default = gulp.series(build_output, watch_files);
 
 // cSpell:words gulpHTMLnano gulpSVGstore, gulpSVGmin, postHTMLplugins
-// cSpell:words postCSSplugins
+// cSpell:words postCSSplugins, nodir
