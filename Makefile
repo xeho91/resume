@@ -22,6 +22,10 @@ fonts:
 	@ ./scripts/generate-font-subsets.sh
 	@ echo "Font subsets generated."
 
+pdf:
+	@ node ./scripts/generatePDF.js
+	@ echo "PDF file generated."
+
 deploy:
 	@ git add --force $(BUILD_DIR)
 	@ git commit --message "Deploy the production build"
